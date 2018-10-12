@@ -24,7 +24,7 @@ export default class SideBarItem extends React.PureComponent<Props, IState> {
         const classNames = `sidebar-item ${this.props.selected ? 'selected' : ''}`;
         return (
             <div className={classNames} onClick={this.props.onClick}>
-                <img height="20" width="20" src={imageSource} />
+                <img height="30" width="30" src={imageSource} />
                 <p>{this.props.label}</p>
             </div>
         );
