@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ISurvey from '../models/Survey';
 import SurveyList from './SurveyList';
+import SideBarItem from './SideBarItem';
 
 export interface IProps {
     surveys: ISurvey[];
@@ -10,6 +11,10 @@ export interface IDispatchProps {
     onJoinRoom: (code: string) => void;
     onCreateRoom: (topic: string) => void;
 }
+interface ISideBarItem {
+    label: string;
+    key: string;
+}
 
 type Props = IProps & IDispatchProps;
 
@@ -18,9 +23,17 @@ interface IState {
     topic: string;
     showNameModal: boolean;
     name: string;
+    selected: string;
 }
 
 export default class Home extends React.Component<Props, IState> {
+    private readonly sidebarItems: ISideBarItem[] = [
+        { label: 'Overzicht', key: 'overzicht' },
+        { label: 'Gegevens verwijderen', key: 'gegevensverwijderen' },
+        { label: 'Machtiging', key: 'machtiging' },
+        { label: 'Mijn account', key: 'mijnaccount' },
+        { label: 'Loguit', key: 'loguit' },
+    ];
     public constructor(props: Props) {
         super(props);
         this.state = {
@@ -28,6 +41,7 @@ export default class Home extends React.Component<Props, IState> {
             topic: '',
             showNameModal: true,
             name: '',
+            selected: this.sidebarItems[0].key,
         };
     }
 
@@ -78,34 +92,49 @@ export default class Home extends React.Component<Props, IState> {
                   <h1>Running Surveys</h1>
                   <SurveyList surveys={this.props.surveys} onJoinRoom={this.props.onJoinRoom} /> */
     public render() {
+
         return (
             <div className="container">
                 <div className="sidebar">
-                    <div className="sidebar-item selected">
-                        {/* <img height="50" width="50" /> */}
-                        <p>Overzicht</p>
-                    </div>
-                    <div className="sidebar-item">
-                        {/* <img height="50" width="50" /> */}
-                        <p>Gegevens verwijderen</p>
-                    </div>
-                    <div className="sidebar-item ">
-                        {/* <img height="50" width="50" /> */}
-                        <p>Machtiging</p>
-                    </div>
-                    <div className="sidebar-item ">
-                        {/* <img height="50" width="50" /> */}
-                        <p>Mijn account</p>
-                    </div>
-                    <div className="sidebar-item ">
-                        {/* <img height="50" width="50" /> */}
-                        <p>Loguit</p>
-                    </div>
+                    <SideBarItem
+                        label={this.sidebarItems[0].label}
+                        selected={this.isSelected(this.sidebarItems[0].key)}
+                        onClick={() => this.selectItem(this.sidebarItems[0].key)}
+                    />
+                    <SideBarItem
+                        label={this.sidebarItems[1].label}
+                        selected={this.isSelected(this.sidebarItems[1].key)}
+                        onClick={() => this.selectItem(this.sidebarItems[1].key)}
+                    />
+                    <SideBarItem
+                        label={this.sidebarItems[2].label}
+                        selected={this.isSelected(this.sidebarItems[2].key)}
+                        onClick={() => this.selectItem(this.sidebarItems[2].key)}
+                    />
+                    <SideBarItem
+                        label={this.sidebarItems[3].label}
+                        selected={this.isSelected(this.sidebarItems[3].key)}
+                        onClick={() => this.selectItem(this.sidebarItems[3].key)}
+                    />
+                    <SideBarItem
+                        label={this.sidebarItems[4].label}
+                        selected={this.isSelected(this.sidebarItems[4].key)}
+                        onClick={() => this.selectItem(this.sidebarItems[4].key)}
+                    />
+
                 </div>
                 <div className="content">
                     <p>CONTENT SCREEN</p>
                 </div>
             </div>
         );
+    }
+
+    private selectItem(key: string) {
+        this.setState({ selected: key });
+    }
+
+    private isSelected(key: string): boolean {
+        return this.state.selected === key;
     }
 }

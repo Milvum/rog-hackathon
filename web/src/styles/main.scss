@@ -30,17 +30,30 @@ body {
     min-width: 20%;
     max-width: 30%;
     padding: 30px;
+}
 
-    .sidebar-item {
-        color: white;
-        font-size: 14px;
-        font-weight: 400;
-        padding: 10px;
-        border-radius: 4px;
+.sidebar-item {
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
 
-        &.selected {
-            background-color: rgba($color: #FFF, $alpha: 0.2);
-        }
+    &:first {
+        margin-top: 0;
+    }
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+
+    &:hover {
+        background-color: rgba($color: #FFF, $alpha: 0.1);
+    }
+
+    &.selected {
+        background-color: rgba($color: #FFF, $alpha: 0.2);
     }
 }
 
