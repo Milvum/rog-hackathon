@@ -42,6 +42,7 @@ body {
     padding: 10px 20px;
     border-radius: 4px;
     margin: 10px 0;
+    transition: all 300ms;
 
     &:first {
         margin-top: 0;
@@ -75,9 +76,6 @@ main {
     bottom: 0;
     left: 0;
     right: 0;
-
-    // padding: 10px;
-    // width: 500px;
 }
 
 $skew: 20deg;
