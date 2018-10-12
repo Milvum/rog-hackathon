@@ -46,41 +46,46 @@ export default class Home extends React.Component<Props, IState> {
         }
         this.props.onJoinRoom(this.state.roomCode);
     }
-
+    /* <h1>Survey</h1>
+                  <form onSubmit={this.onSubmitCreate}>
+                      <div className="parallelogram">
+                          <input
+                              className="skew-fix"
+                              placeholder="topic"
+                              type="text"
+                              value={this.state.topic}
+                              onChange={(event) => this.setState({ topic: event.target.value })}
+                          />
+                      </div>
+                      <a className="parallelogram button main" onClick={this.onSubmitCreate}>
+                          <span className="skew-fix">Create</span>
+                      </a>
+                  </form>
+                  <form onSubmit={this.onSubmit}>
+                      <div className="parallelogram">
+                          <input
+                              className="skew-fix"
+                              placeholder="room"
+                              type="text"
+                              value={this.state.roomCode}
+                              onChange={(event) => this.setState({ roomCode: event.target.value })}
+                          />
+                      </div>
+                      <a className="parallelogram button main" onClick={this.onSubmit}>
+                          <span className="skew-fix">Join</span>
+                      </a>
+                  </form>
+                  <h1>Running Surveys</h1>
+                  <SurveyList surveys={this.props.surveys} onJoinRoom={this.props.onJoinRoom} /> */
     public render() {
         return (
             <div>
-                <h1>Survey</h1>
-                <form onSubmit={this.onSubmitCreate}>
-                    <div className="parallelogram">
-                        <input
-                            className="skew-fix"
-                            placeholder="topic"
-                            type="text"
-                            value={this.state.topic}
-                            onChange={(event) => this.setState({ topic: event.target.value })}
-                        />
+                <div className="sidebar">
+                    <div className="sidebar-item">
+                        {/* <img height="50" width="50" /> */}
+                        <p>Overzicht</p>
                     </div>
-                    <a className="parallelogram button main" onClick={this.onSubmitCreate}>
-                        <span className="skew-fix">Create</span>
-                    </a>
-                </form>
-                <form onSubmit={this.onSubmit}>
-                    <div className="parallelogram">
-                        <input
-                            className="skew-fix"
-                            placeholder="room"
-                            type="text"
-                            value={this.state.roomCode}
-                            onChange={(event) => this.setState({ roomCode: event.target.value })}
-                        />
-                    </div>
-                    <a className="parallelogram button main" onClick={this.onSubmit}>
-                        <span className="skew-fix">Join</span>
-                    </a>
-                </form>
-                <h1>Running Surveys</h1>
-                <SurveyList surveys={this.props.surveys} onJoinRoom={this.props.onJoinRoom} />
+                </div>
             </div>
         );
     }
