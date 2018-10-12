@@ -33,6 +33,9 @@ body {
 }
 
 .sidebar-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     color: white;
     font-size: 14px;
     font-weight: 400;
@@ -54,6 +57,10 @@ body {
 
     &.selected {
         background-color: rgba($color: #FFF, $alpha: 0.2);
+    }
+
+    p {
+        margin-left: 10px;
     }
 }
 

@@ -14,6 +14,7 @@ export interface IDispatchProps {
 interface ISideBarItem {
     label: string;
     key: string;
+    icon: string;
 }
 
 type Props = IProps & IDispatchProps;
@@ -28,11 +29,11 @@ interface IState {
 
 export default class Home extends React.Component<Props, IState> {
     private readonly sidebarItems: ISideBarItem[] = [
-        { label: 'Overzicht', key: 'overzicht' },
-        { label: 'Gegevens verwijderen', key: 'gegevensverwijderen' },
-        { label: 'Machtiging', key: 'machtiging' },
-        { label: 'Mijn account', key: 'mijnaccount' },
-        { label: 'Loguit', key: 'loguit' },
+        { label: 'Overzicht', key: 'overzicht', icon: 'overview-icon.svg' },
+        { label: 'Gegevens verwijderen', key: 'gegevensverwijderen', icon: 'info-remove-icon.svg' },
+        { label: 'Machtiging', key: 'machtiging', icon: 'authorization-icon.svg' },
+        { label: 'Mijn account', key: 'mijnaccount', icon: 'settings-icon.svg' },
+        { label: 'Loguit', key: 'loguit', icon: 'log-out-icon.svg' },
     ];
     public constructor(props: Props) {
         super(props);
@@ -60,37 +61,7 @@ export default class Home extends React.Component<Props, IState> {
         }
         this.props.onJoinRoom(this.state.roomCode);
     }
-    /* <h1>Survey</h1>
-                  <form onSubmit={this.onSubmitCreate}>
-                      <div className="parallelogram">
-                          <input
-                              className="skew-fix"
-                              placeholder="topic"
-                              type="text"
-                              value={this.state.topic}
-                              onChange={(event) => this.setState({ topic: event.target.value })}
-                          />
-                      </div>
-                      <a className="parallelogram button main" onClick={this.onSubmitCreate}>
-                          <span className="skew-fix">Create</span>
-                      </a>
-                  </form>
-                  <form onSubmit={this.onSubmit}>
-                      <div className="parallelogram">
-                          <input
-                              className="skew-fix"
-                              placeholder="room"
-                              type="text"
-                              value={this.state.roomCode}
-                              onChange={(event) => this.setState({ roomCode: event.target.value })}
-                          />
-                      </div>
-                      <a className="parallelogram button main" onClick={this.onSubmit}>
-                          <span className="skew-fix">Join</span>
-                      </a>
-                  </form>
-                  <h1>Running Surveys</h1>
-                  <SurveyList surveys={this.props.surveys} onJoinRoom={this.props.onJoinRoom} /> */
+
     public render() {
 
         return (
@@ -99,26 +70,31 @@ export default class Home extends React.Component<Props, IState> {
                     <SideBarItem
                         label={this.sidebarItems[0].label}
                         selected={this.isSelected(this.sidebarItems[0].key)}
+                        iconName={this.sidebarItems[0].icon}
                         onClick={() => this.selectItem(this.sidebarItems[0].key)}
                     />
                     <SideBarItem
                         label={this.sidebarItems[1].label}
                         selected={this.isSelected(this.sidebarItems[1].key)}
+                        iconName={this.sidebarItems[1].icon}
                         onClick={() => this.selectItem(this.sidebarItems[1].key)}
                     />
                     <SideBarItem
                         label={this.sidebarItems[2].label}
                         selected={this.isSelected(this.sidebarItems[2].key)}
+                        iconName={this.sidebarItems[2].icon}
                         onClick={() => this.selectItem(this.sidebarItems[2].key)}
                     />
                     <SideBarItem
                         label={this.sidebarItems[3].label}
                         selected={this.isSelected(this.sidebarItems[3].key)}
+                        iconName={this.sidebarItems[3].icon}
                         onClick={() => this.selectItem(this.sidebarItems[3].key)}
                     />
                     <SideBarItem
                         label={this.sidebarItems[4].label}
                         selected={this.isSelected(this.sidebarItems[4].key)}
+                        iconName={this.sidebarItems[4].icon}
                         onClick={() => this.selectItem(this.sidebarItems[4].key)}
                     />
 
