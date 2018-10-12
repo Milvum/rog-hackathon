@@ -37,10 +37,6 @@
         "no-unused-variable": [
             true
         ],
-        "object-literal-shorthand": [
-            true,
-            "never"
-        ],
         "interface-name": false
     }
 }
