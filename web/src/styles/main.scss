@@ -66,7 +66,10 @@ body {
 }
 
 .content {
-    padding: 10px;
+    padding: 25px;
+
+    // child
+    flex-grow: 1;
 }
 
 main {
@@ -232,4 +235,71 @@ h1 {
 
 .cs-connecting {
     background-color: $tint-color;
+}
+
+.category {
+    $divider-width: 1.5px;
+
+    border-width: 0;
+    border-top-width: $divider-width;
+    border-style: solid;
+    border-color: #0D81C9;
+
+    width: 90%;
+
+    padding: 15px 0;
+
+    &:last-child {
+        border-bottom-width: $divider-width;
+    }
+
+    .categoryName {
+        color: #0D81C9;
+    }
+
+    .instance {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 15px;
+        color: #7F8FA4;
+
+        &:not(:nth-child(2)) {
+            border: 0 solid #7F8FA4;
+            border-top-width: 1px;
+            margin-top: 20px;
+        }
+
+        > * {
+            width: 12em;
+            word-wrap: break-word;
+        }
+
+        .decisions {
+            width: 20em;
+
+            > :not(:first-child) {
+                padding-top: 20px;
+            }
+
+            > * {
+                display: flex;
+                flex-direction: row;
+
+            }
+
+            .check {
+                border-radius: 50%;
+                border: solid 1px #7F8FA4;
+                width: 1em;
+                height: 1em;
+                margin-right: 10px;
+                flex: none;
+
+                &.checked {
+                    background-color: #8BC34A;
+                }
+            }
+        }
+    }
 }

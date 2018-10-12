@@ -3,7 +3,7 @@ import ISubmission from '../models/Submission';
 
 interface IProps {
     submissions: ISubmission[];
-};
+}
 
 export type SubmissionListProps = IProps;
 

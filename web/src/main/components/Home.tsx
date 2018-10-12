@@ -2,6 +2,7 @@ import * as React from 'react';
 import ISurvey from '../models/Survey';
 import SurveyList from './SurveyList';
 import SideBarItem from './SideBarItem';
+import Category from './category';
 
 export interface IProps {
     surveys: ISurvey[];
@@ -100,7 +101,23 @@ export default class Home extends React.Component<Props, IState> {
 
                 </div>
                 <div className="content">
-                    <p>CONTENT SCREEN</p>
+                    <Category
+                        category="abbonementen"
+                        instances={[
+                            {
+                                name: 'spotify',
+                                date: new Date(),
+                                data: ['Stuff', 'secret stuff', 'more stuff'],
+                                decision: 1,
+                            },
+                            {
+                                name: 'Videoland',
+                                date: new Date(),
+                                data: ['Absolutely nothing'],
+                                decision: 2,
+                            },
+                        ]}
+                    />
                 </div>
             </div>
         );
