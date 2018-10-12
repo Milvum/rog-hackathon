@@ -38,10 +38,6 @@ export default class SurveySocket implements ISurveySocket {
         });
 
         if (this.options.mode === 'host') {
-            this.socket.on('submission', (survey: ISurvey) => {
-                this.dispatch(SurveyActions.submissionReceived({ survey, socket: this }));
-            });
-
             this.socket.on('userConnected', (name: string) => {
                 this.dispatch(UserActions.userJoin(name));
             });
@@ -49,6 +45,10 @@ export default class SurveySocket implements ISurveySocket {
                 this.dispatch(UserActions.userPart(name));
             });
         }
+
+        this.socket.on('submission', (survey: ISurvey) => {
+            this.dispatch(SurveyActions.submissionReceived({ survey, socket: this }));
+        });
 
         this.socket.on('surveyClosed', (survey: ISurvey) => {
             this.dispatch(SurveyActions.surveyClosed({ survey, socket: this }));

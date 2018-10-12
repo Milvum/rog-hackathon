@@ -12,6 +12,7 @@ body {
   background-color: #3c3c3c;
   font-family: 'Montserrat', sans-serif;
   color: #FFF;
+  text-transform: uppercase;
 }
 
 main {
@@ -33,6 +34,10 @@ form {
   color: $text-color;
   margin: 10px 0px;
 
+  div {
+    width: 100%;
+  }
+
   input[type=text] {
     width: 100%;
     padding: 12px 20px;
@@ -44,6 +49,7 @@ form {
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     color: $text-color;
+    text-transform: uppercase;
 
     &::placeholder {
       color: darken($text-color, 10%);
@@ -77,8 +83,8 @@ h1 {
   width: 100px;
   padding: 15px 32px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
+  text-decoration: none;
   cursor: pointer;
   justify-content: center;
 
@@ -103,21 +109,69 @@ h1 {
   .row-element {
     width: auto;
     margin: 5px 0px;
-    
-    .skew-fix {
-      flex-direction: row;
-      display: flex;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-decoration: none;
+    cursor: pointer;
+    height: 50px;
 
-      span {
-        display: inline-block;
-
-        &.code {
-          justify-self: start;
-          text-align: start;
-          width: 80px;
-        }
+    &:hover {
+      .code-header {
+        background-color: darken($tint-color, 10%); 
       }
+      > div {
+        background-color: lighten($base-color, 10%);
+      }
+    }
+    
+    > div {
+      width: 100%;
+      display: inline-block;
+      text-align: start;
+      padding: 15px 24px;
+    }
+
+    .code-header {
+      justify-self: start;
+      width: 100px;
+      text-align: center;
+      padding: 15px 10px;
+      background-color: $tint-color;
     }
   }
 }
 
+.text-element {
+  margin: 15px 32px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.cs {
+  justify-self: start;
+  width: 40px;
+  display: inline-block;
+  height: 50px;
+}
+
+.cs-connected {
+  background-color: green;
+}
+
+.cs-disconnected {
+  background-color: red;
+}
+
+.cs-failed {
+  background-color: red;
+}
+
+.cs-connecting {
+  background-color: $tint-color;
+}

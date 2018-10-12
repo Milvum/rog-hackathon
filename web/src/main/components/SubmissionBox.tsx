@@ -1,12 +1,9 @@
 import * as React from 'react';
 
-type Props = IDispatchProps & IProps;
+type Props = IDispatchProps;
 
 export type SubmissionBoxDispatchProps = Props;
 
-interface IProps {
-    disabled: boolean;
-}
 interface IDispatchProps {
     onSubmission: (submission: string) => void;
 }

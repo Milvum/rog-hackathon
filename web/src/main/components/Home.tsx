@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ISurvey from '../models/Survey';
 import SurveyList from './SurveyList';
-import * as ReactModal from 'react-modal';
 
 export interface IProps {
     surveys: ISurvey[];

@@ -2,6 +2,8 @@ import * as React from 'react';
 import { SurveyState, SurveyConnectionState } from '../reducers/Survey';
 import ISurvey from '../models/Survey';
 import SubmissionBox from './SubmissionBox';
+import ConnectionStatus from './ConnectionStatus';
+import SubmissionList from './SubmissionList';
 
 export type Props = ISubmissionProps & IDispatchProps;
 export type SubmissionProps = ISubmissionProps;
@@ -37,7 +39,7 @@ export default class Submission extends React.PureComponent<Props> {
     private renderConnecting() {
         return (
             <div>
-                <p>Connecting to room...</p>
+                <ConnectionStatus status={this.props.survey.state} />
             </div>
         );
     }
@@ -45,7 +47,7 @@ export default class Submission extends React.PureComponent<Props> {
     private renderDisconnected() {
         return (
             <div>
-                <p>Not connected to any room</p>
+                <ConnectionStatus status={this.props.survey.state} />
                 <button onClick={this.connectSurvey}>Connect</button>
             </div>
         );
@@ -54,19 +56,39 @@ export default class Submission extends React.PureComponent<Props> {
     private renderFailed() {
         return (
             <div>
-                <p>Failed to connect to room</p>
+                <ConnectionStatus status={this.props.survey.state} />
                 <button onClick={this.connectSurvey}>Retry</button>
             </div>
         );
     }
 
+    private renderSubmissionBox(disabled: boolean) {
+        if (disabled) {
+            return (
+                <div className="parallelogram">
+                    <span className="skew-fix text-element">Survey ended</span>
+                </div>
+            );
+        } else {
+            return (
+                <SubmissionBox onSubmission={this.props.onSubmission} />
+            );
+        }
+    }
+
     private renderConnected(survey: ISurvey) {
         return (
             <div>
-                <p>Connected to room!</p>
-                <h1>{survey.title}</h1>
-                {survey.closed ? (<h2>Survey Closed</h2>) : null}
-                <SubmissionBox onSubmission={this.props.onSubmission} disabled={survey.closed} />
+                <div className="header">
+                    <ConnectionStatus status={this.props.survey.state} />
+                    <div className="parallelogram button">
+                        <span className="skew-fix">{survey.closed ? 'closed' : 'open'}</span>
+                    </div>
+                </div>
+                <h1>Topic: {survey.title}</h1>
+                {this.renderSubmissionBox(survey.closed)}
+                <h1>Submissions</h1>
+                <SubmissionList submissions={survey.submissions} />
             </div>
         );
     }

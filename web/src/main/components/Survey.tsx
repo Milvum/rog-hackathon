@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { SurveyState, SurveyConnectionState } from '../reducers/Survey';
 import ISurvey from '../models/Survey';
+import ConnectionStatus from './ConnectionStatus';
+import SubmissionList from './SubmissionList';
 
 export interface IProps {
     users: string[];
@@ -31,7 +33,7 @@ export default class Survey extends React.Component<Props> {
     private renderConnecting() {
         return (
             <div>
-                <p>Connecting to room...</p>
+                <ConnectionStatus status={this.props.survey.state} />
             </div>
         );
     }
@@ -39,7 +41,7 @@ export default class Survey extends React.Component<Props> {
     private renderDisconnected() {
         return (
             <div>
-                <p>Not connected to any room</p>
+                <ConnectionStatus status={this.props.survey.state} />
                 <button onClick={() => this.props.onConnectSurvey(this.props.code)}>Connect</button>
             </div>
         );
@@ -48,23 +50,40 @@ export default class Survey extends React.Component<Props> {
     private renderFailed() {
         return (
             <div>
-                <p>Failed to connect to room</p>
+                <ConnectionStatus status={this.props.survey.state} />
                 <button onClick={() => this.props.onConnectSurvey(this.props.code)}>Retry</button>
             </div>
         );
     }
 
+    private renderClosedState(closed: boolean) {
+        if (closed) {
+            return (
+                <div className="parallelogram button">
+                    <span className="skew-fix">Closed</span>
+                </div>
+            );
+        } else {
+            return (
+                <a
+                    className="parallelogram button main"
+                    onClick={this.props.onCloseSurvey}
+                >
+                    <span className="skew-fix">Close</span>
+                </a>
+            );
+        }
+    }
+
     private renderConnected(survey: ISurvey) {
         return (
             <div>
-                <p>Connected to room!</p>
-                <h1>{survey.title}</h1>
-                <button onClick={this.props.onCloseSurvey}>Close Survey</button>
-                <div>
-                    {survey.submissions.map((submission, index) => (
-                        <li key={index}>{`Submission from: ${submission.submitter} - ${submission.entry}`}</li>
-                    ))}
+                <div className="header">
+                    <ConnectionStatus status={this.props.survey.state} />
+                    {this.renderClosedState(survey.closed)}
                 </div>
+                <h1>Topic: {survey.title}</h1>
+                <SubmissionList submissions={survey.submissions} />
             </div>
         );
     }

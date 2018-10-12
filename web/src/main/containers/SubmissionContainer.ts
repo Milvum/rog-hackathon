@@ -14,7 +14,7 @@ type OwnProps = RouteComponentProps<IRouteParam>;
 const mapStateToProps: MapStateToProps<SubmissionProps, OwnProps, AppState> = (state, ownProps) => {
     return {
         code: ownProps.match.params.code,
-        currentUser: 'user',
+        currentUser: '???',
         survey: state.survey,
     };
 };

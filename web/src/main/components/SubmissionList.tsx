@@ -1,36 +1,32 @@
 import * as React from 'react';
-import ISurvey from '../models/Survey';
+import ISubmission from '../models/Submission';
 
 interface IProps {
-    surveys: ISurvey[];
-    onJoinRoom: (code: string) => void;
-}
+    submissions: ISubmission[];
+};
 
-export default class SurveyList extends React.PureComponent<IProps> {
-    public constructor(props: IProps) {
-        super(props);
-    }
+export type SubmissionListProps = IProps;
 
+export default class SubmissionList extends React.PureComponent<SubmissionListProps> {
     public render() {
         return (
             <div className="survey-list">
-                {this.props.surveys.map((survey, index) => (
-                    <a
+                {this.props.submissions.map((submission, index) => (
+                    <div
+                        key={submission.id}
                         className="row-element"
-                        key={survey.code}
-                        onClick={() => this.props.onJoinRoom(survey.code)}
                     >
                         <div className="code-header parallelogram">
                             <div className="skew-fix">
-                                <span className="code">{survey.code}</span>
+                                <span>{submission.submitter}</span>
                             </div>
                         </div>
                         <div className="parallelogram">
                             <div className="skew-fix">
-                                <span>{survey.title}</span>
+                                <span>{submission.entry}</span>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 ))}
             </div>
         );
