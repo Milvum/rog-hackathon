@@ -1,0 +1,53 @@
+{
+  "name": "basic-web-skeleton",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server --inline --colors --hot --config webpack.dev.ts",
+    "build": "webpack --config webpack.prod.ts"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/clean-webpack-plugin": "^0.1.2",
+    "@types/html-webpack-plugin": "^2.30.1",
+    "@types/mini-css-extract-plugin": "^0.2.0",
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "@types/react-redux": "^6.0.4",
+    "@types/react-router-dom": "^4.2.7",
+    "@types/redux-logger": "^3.0.6",
+    "@types/socket.io-client": "^1.4.32",
+    "@types/webpack-merge": "^4.1.3",
+    "awesome-typescript-loader": "^5.0.0-1",
+    "circular-dependency-plugin": "^4.4.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "connected-react-router": "^4.3.0",
+    "css-loader": "^0.28.7",
+    "html-webpack-plugin": "^3.0.6",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.7.2",
+    "postcss-loader": "^2.0.9",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "sass-loader": "^6.0.6",
+    "socket.io-client": "^2.1.1",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.9.1",
+    "tslint-loader": "^3.6.0",
+    "tslint-react": "^3.5.1",
+    "typescript": "2.9.1",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1",
+    "webpack-extract-css-hot-reload": "^1.0.3",
+    "webpack-merge": "^4.1.2"
+  }
+}

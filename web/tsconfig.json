@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "moduleResolution": "node",
+    "lib": [
+      "dom",
+      "es2015",
+      "es2015.promise",
+      "es2017"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "jsx": "react",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "allowUnreachableCode": false,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false
+  },
+  "compileOnSave": false
+}

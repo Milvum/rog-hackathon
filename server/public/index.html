@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0; overflow: hidden">
+        <iframe id="mainframe" style="width: 100%; height: 100%; border: 0;"></iframe>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const frame = document.getElementById("mainframe");
+
+        // Automatically reconnect when websocket connection is broken
+        const websocket = io.connect({
+            reconnection: true,
+            reconnectionDelay: 1000,
+            query: "room=AAAA"
+        });
+    </script>
+</body>
+
+</html>

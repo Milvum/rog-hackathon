@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "sourceMap": true,
+        "outDir": "build",
+        "rootDir": "src",
+        "declaration": false,
+        "allowUnreachableCode": false,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "jsx": "react",
+        "skipLibCheck": true,
+        "strict": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "exclude": [
+        "node_modules",
+        "build"
+    ]
+}

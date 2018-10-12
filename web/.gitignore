@@ -1,0 +1,18 @@
+# OSX
+#
+.DS_Store
+
+# Logs
+#
+*.log
+npm-debug.log*
+
+# Dependency directories
+#
+node_modules/
+.awcache/
+
+# Other
+#
+dist/
+build/
