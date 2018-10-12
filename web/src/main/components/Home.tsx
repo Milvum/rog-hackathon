@@ -79,12 +79,31 @@ export default class Home extends React.Component<Props, IState> {
                   <SurveyList surveys={this.props.surveys} onJoinRoom={this.props.onJoinRoom} /> */
     public render() {
         return (
-            <div>
+            <div className="container">
                 <div className="sidebar">
-                    <div className="sidebar-item">
+                    <div className="sidebar-item selected">
                         {/* <img height="50" width="50" /> */}
                         <p>Overzicht</p>
                     </div>
+                    <div className="sidebar-item">
+                        {/* <img height="50" width="50" /> */}
+                        <p>Gegevens verwijderen</p>
+                    </div>
+                    <div className="sidebar-item ">
+                        {/* <img height="50" width="50" /> */}
+                        <p>Machtiging</p>
+                    </div>
+                    <div className="sidebar-item ">
+                        {/* <img height="50" width="50" /> */}
+                        <p>Mijn account</p>
+                    </div>
+                    <div className="sidebar-item ">
+                        {/* <img height="50" width="50" /> */}
+                        <p>Loguit</p>
+                    </div>
+                </div>
+                <div className="content">
+                    <p>CONTENT SCREEN</p>
                 </div>
             </div>
         );
