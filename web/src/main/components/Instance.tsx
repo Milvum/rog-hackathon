@@ -33,7 +33,7 @@ export default class Category extends React.PureComponent<IProps> {
     public render() {
         return (
             <div className="instance">
-                <div className="iName">{this.props.instance.name}</div>
+                <div className="iName"><img src={`data:image/png;base64,${this.props.instance.icon}`} /> {this.props.instance.name}</div>
                 <div className="iDate">{moment(this.props.instance.date).format('DD MMM YYYY')}</div>
                 <div className="iData">
                     {this.props.instance.data.map((dat, key) =>

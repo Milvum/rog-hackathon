@@ -1,5 +1,5 @@
 export default interface Instance {
-
+    icon?: string;
     name: string;
     date: Date;
     data: string[];
