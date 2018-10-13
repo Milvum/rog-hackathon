@@ -1,30 +1,47 @@
 import * as React from 'react';
 import * as moment from 'moment';
 import Instance from '../models/Instance';
+import Popup from './Popup';
 
 interface IProps {
     instance: Instance;
 }
+interface IState {
+    removed: boolean;
+    show: boolean;
+}
+
+type Props = IProps;
 
 export type InstanceProps = IProps;
 
-function Removal({removed, onClick}: {removed: boolean, onClick?: () => void}) {
+function Removal({ removed, onClick }: { removed: boolean, onClick?: () => void }) {
     return (
         <div className={`removedButton ${removed ? 'removed' : ''}`} onClick={onClick}>
             {!removed ?
-             'Verzoek data en account verwijdering' :
-             'Aanvraag is ingediend'}
+                'Verzoek data en account verwijdering' :
+                'Aanvraag is ingediend'}
         </div>);
 }
 
-const DECISIONS = [
-    'Laat nabestaande bepalen',
-    'Verberg voor nabestaande en verwijder',
-    'Automatisch opzeggen na overlijden',
-    'Geef nabestaande het recht om het account over te zetten',
-];
+export default class Category extends React.PureComponent<IProps, IState> {
+    public constructor(props: Props) {
+        super(props);
+        this.state = { removed: !!this.props.instance.deleted, show: false };
+    }
 
-export default class Category extends React.PureComponent<IProps> {
+    private togglePopup() {
+        this.setState({ show: !this.state.show });
+    }
+
+    private onRemove() {
+        if (!this.state.removed) {
+            // TODO:  SHOW POPUP
+            this.togglePopup();
+        }
+        this.setState({ removed: true });
+
+    }
     public render() {
         return (
             <div className="instance">
@@ -32,7 +49,11 @@ export default class Category extends React.PureComponent<IProps> {
                     <img src={`data:image/png;base64,${this.props.instance.icon}`} />
                     {this.props.instance.name}
                 </div>
-                <Removal removed={false} />
+                <Removal removed={this.state.removed} onClick={() => this.onRemove()} />
+                {
+                    this.state.show &&
+                    <Popup type="delete" service={this.props.instance.name} onClose={() => this.togglePopup()} />
+                }
             </div>
         );
     }

@@ -9,6 +9,7 @@ interface IDispatchProps {
     message?: string;
     type?: PopupType;
     service?: string;
+    onClose?: () => void;
 }
 
 type PopupType = 'delete';
@@ -32,26 +33,28 @@ export default class Popup extends React.PureComponent<Props, IState> {
             this.props.message;
 
         return (
-            <div className="videoland-popup popup-container" >
-                <div className="header-content">
-                    <img width="16" height="16" src="/assets/logo.svg" />
-                    <p>{title}</p>
-                </div>
-                <div className="line small" />
+            <div className="popup-overlay">
+                <div className="videoland-popup popup-container" >
+                    <div className="popup-header-content">
+                        <img width="16" height="16" src="/assets/logo.svg" />
+                        <p>{title}</p>
+                    </div>
+                    <div className="line small" />
 
-                <div className="popup-content">
-                    <p className="popup-message">
-                        {message}
-                    </p>
+                    <div className="popup-content">
+                        <p className="popup-message">
+                            {message}
+                        </p>
 
-                </div>
-                <div className="buttons-container">
-                    <button
-                        className="confirm-button btn"
-                        onClick={() => { alert('Works'); }}
-                    >
-                        Oke
-                    </button>
+                    </div>
+                    <div className="buttons-container">
+                        <button
+                            className="confirm-button btn"
+                            onClick={this.props.onClose}
+                        >
+                            Oke
+                        </button>
+                    </div>
                 </div>
             </div>
         );

@@ -7,6 +7,7 @@ import Category from './category';
 import Overview from './Overview';
 import Removal from './Removal';
 import { IData } from '../actions/ApiActions';
+import Header from './Header';
 
 const instances: Instance[] = [
     {
@@ -93,22 +94,25 @@ export default class Home extends React.Component<Props, IState> {
     public render() {
         console.log(this.props.data);
         return (
-            <div className="container">
-                <div className="sidebar">
-                    {this.sidebarItems.map((item, key) =>
-                        <SideBarItem
-                            label={item.label}
-                            selected={this.isSelected(item.key)}
-                            iconName={item.icon}
-                            onClick={() => this.selectItem(item.key)}
-                            key={key}
-                        />)}
+            <div className="body">
+                <Header name="Anne Schipper" />
+                <div className="container">
+                    <div className="sidebar">
+                        {this.sidebarItems.map((item, key) =>
+                            <SideBarItem
+                                label={item.label}
+                                selected={this.isSelected(item.key)}
+                                iconName={item.icon}
+                                onClick={() => this.selectItem(item.key)}
+                                key={key}
+                            />)}
+                    </div>
+                    {
+                        this.state.selected === 'overzicht' ?
+                            <Overview categories={this.props.data} /> :
+                            <Removal categories={this.props.data} />
+                    }
                 </div>
-                {
-                    this.state.selected === 'overzicht' ?
-                    <Overview categories={this.props.data}/> :
-                    <Removal categories={this.props.data} />
-                }
             </div>
         );
     }
