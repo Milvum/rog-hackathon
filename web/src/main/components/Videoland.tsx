@@ -52,10 +52,8 @@ export default class Videoland extends React.Component<Props, IState> {
 
         return (
             <div className="container videoland-container">
-                {/* <Popup type="delete" service="Videoland" /> */}
-
                 <div className="videoland-popup">
-                    <div className="header-content">
+                    <div className="popup-header-content">
                         <img width="16" height="16" src="/assets/logo.svg" />
                         <p>Log in met BRG2</p>
                     </div>
