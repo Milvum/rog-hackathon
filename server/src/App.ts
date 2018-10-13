@@ -106,7 +106,7 @@ export class App {
         const netflix_entry: ConsumerEntry = {
             category: "Abonnementen",
             consumer: NETFLIX,
-            date: new Date("13-10-2017"),
+            date: new Date("2017-10-13"),
             options: {},
             redirect: "https://nice.link/redir",
             token: uuid.v4(),
@@ -120,7 +120,7 @@ export class App {
         const spotify_entry: ConsumerEntry = {
             category: "Abonnementen",
             consumer: SPOTIFY,
-            date: new Date("13-03-2017"),
+            date: new Date("2017-03-13"),
             options: {},
             redirect: "https://nice.link/redir",
             token: uuid.v4(),
@@ -133,7 +133,7 @@ export class App {
         const abn_entry: ConsumerEntry = {
             category: "Financieel",
             consumer: NETFLIX,
-            date: new Date("13-03-2017"),
+            date: new Date("2017-03-13"),
             options: {},
             redirect: "https://nice.link/redir",
             token: uuid.v4(),
@@ -145,7 +145,7 @@ export class App {
         user.data_consumers[ABN.id] = abn_entry;
 
         user.data_producers[GOVERNMENT.id] = {
-            date: new Date("01-01-2000"),
+            date: new Date("2000-01-01"),
             producer: GOVERNMENT,
         };
 
