@@ -72,7 +72,7 @@ export default class Home extends React.Component<Props, IState> {
     }
 
     public componentDidMount() {
-        this.props.onRequestData();
+        setInterval(this.props.onRequestData, 1000);
     }
 
     private onSubmitCreate = (event: React.FormEvent) => {
@@ -92,7 +92,6 @@ export default class Home extends React.Component<Props, IState> {
     }
 
     public render() {
-        console.log(this.props.data);
         return (
             <div className="body">
                 <Header name="Anne Schipper" />
