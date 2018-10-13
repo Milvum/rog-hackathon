@@ -15,18 +15,6 @@ interface IDProps {
     onClick?: () => void;
 }
 
-// function Decision({text, checked, onClick}: IDProps) {
-//     return (
-//         <CheckboxItem selected={checked} onClick={onClick}>
-//             <div className={`check  ${checked ? 'checked' : ''}`}  />
-//             <div>{text}</div>
-//         </div>);
-//         // <div onClick={onClick}>
-//         //     <div className={`check  ${checked ? 'checked' : ''}`}  />
-//         //     <div>{text}</div>
-//         // </div>);
-// }
-
 const DECISIONS = [
     'Laat nabestaande bepalen',
     'Verberg voor nabestaande en verwijder',
@@ -56,11 +44,6 @@ export default class Category extends React.PureComponent<IProps> {
                             key={key}
                             type="round"
                         />))}
-                    {/* (<Decision
-                        text={decision}
-                        checked={this.props.instance.decision === key}
-                        key={key}
-                    /> ))} */}
                 </div>
             </div>
         );
