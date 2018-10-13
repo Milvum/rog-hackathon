@@ -134,7 +134,7 @@ export class App {
 
         const abn_entry: ConsumerEntry = {
             category: "Financieel",
-            consumer: NETFLIX,
+            consumer: ABN,
             date: new Date("2017-03-13"),
             options: {},
             redirect: "https://nice.link/redir",
