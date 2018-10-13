@@ -330,7 +330,7 @@ h1 {
             p {
                 margin-left: 20px;
                 font-size: 16px;
-                font-weight: 300;
+                font-weight: 400;
             }
         }
 
@@ -518,6 +518,7 @@ $login-button-color: #3C5A98;
     text-transform: uppercase;
     font-weight: 400;
     border-radius: 12px;
+    min-width: 160px;
 
     &:hover {
         background-color: lighten($tint-color, 5%);
@@ -525,5 +526,18 @@ $login-button-color: #3C5A98;
 
     &:active {
         background-color: lighten($tint-color, 15%);
+    }
+}
+
+.popup-container {
+    min-height: 200px !important;
+    width: 560px !important;
+
+    .popup-message {
+        margin: 40px 0 0;
+    }
+
+    .buttons-container {
+        margin-top: 0 !important;
     }
 }

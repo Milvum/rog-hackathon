@@ -4,6 +4,7 @@ import ISurvey from '../models/Survey';
 import ConnectionStatus from './ConnectionStatus';
 import SubmissionList from './SubmissionList';
 import CheckboxItem from './CheckboxItem';
+import Popup from './Popup';
 
 export interface IProps {
     users: string[];
@@ -30,8 +31,7 @@ export type Props = IProps & IDispatchProps;
 export default class Videoland extends React.Component<Props, IState> {
     public constructor(props: Props) {
         super(props);
-        this.state = { username: '', password: '', loginRog: true };
-        // this.props.serviceName = 'Videoland';
+        this.state = { username: '', password: '', loginRog: false };
 
     }
 
@@ -46,16 +46,18 @@ export default class Videoland extends React.Component<Props, IState> {
         }
     }
 
-
     public renderPopup() {
         const message = 'Videoland wil toegang tot je BRG2 account.';
         const question = `Welke gegevens wil je delen met ${this.props.serviceName}?`;
+
         return (
             <div className="container videoland-container">
+                {/* <Popup type="delete" service="Videoland" /> */}
+
                 <div className="videoland-popup">
                     <div className="header-content">
                         <img width="16" height="16" src="/assets/logo.svg" />
-                        <p>Log in met ROG</p>
+                        <p>Log in met BRG2</p>
                     </div>
                     <div className="line small" />
 
@@ -106,7 +108,7 @@ export default class Videoland extends React.Component<Props, IState> {
                     >
                         <div className="brg-login-button-content">
                             <img width="16" height="16" src="/assets/logo-white.svg" />
-                            <p>Log in met ROG</p>
+                            <p>Log in met BRG2</p>
                         </div>
                     </button>
 
