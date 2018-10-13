@@ -4,6 +4,8 @@ import Instance from '../models/Instance';
 import SurveyList from './SurveyList';
 import SideBarItem from './SideBarItem';
 import Category from './category';
+import Overview from './Overview';
+import Removal from './Removal';
 
 const instances: Instance[] = [
     {
@@ -94,12 +96,11 @@ export default class Home extends React.Component<Props, IState> {
                             key={key}
                         />)}
                 </div>
-                <div className="content">
-                    <Category
-                        category="abbonementen"
-                        instances={instances}
-                    />
-                </div>
+                {
+                    this.state.selected === 'overzicht' ?
+                    <Overview categories={[{name: 'Abbonementen', instances}]}/> :
+                    <Removal categories={[{name: 'Abbonementen', instances}]} />
+                }
             </div>
         );
     }
