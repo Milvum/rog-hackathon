@@ -8,13 +8,14 @@ interface IDispatchProps {
     label: string;
     selected?: boolean;
     onClick?: () => void;
+    type?: CheckboxType;
 }
+
+type CheckboxType = 'round' | 'square';
 
 interface IState {
     selected: boolean;
 }
-
-
 
 export default class CheckboxItem extends React.PureComponent<Props, IState> {
     public constructor(props: Props) {
@@ -30,7 +31,9 @@ export default class CheckboxItem extends React.PureComponent<Props, IState> {
     }
 
     public render() {
-        const classNames = `checkbox-square ${this.state.selected ? 'selected' : ''}`;
+        const mainClassName = this.props.type === 'round' ? 'checkbox-round' : 'checkbox-square';
+
+        const classNames = `checkbox ${mainClassName} ${this.state.selected ? 'checked' : ''}`;
         return (
             <div className="checkbox-item-container" onClick={() => this.onClickEvent()}>
                 <button className={classNames} />

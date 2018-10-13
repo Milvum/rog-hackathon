@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as moment from 'moment';
 import Instance from '../models/Instance';
+import CheckboxItem from './CheckboxItem';
 
 interface IProps {
     instance: Instance;
@@ -11,16 +12,20 @@ export type InstanceProps = IProps;
 interface IDProps {
     text: string;
     checked: boolean;
-    onClick ?: () => void;
+    onClick?: () => void;
 }
 
-function Decision({text, checked, onClick}: IDProps) {
-    return (
-        <div onClick={onClick}>
-            <div className={`check  ${checked ? 'checked' : ''}`}  />
-            <div>{text}</div>
-        </div>);
-}
+// function Decision({text, checked, onClick}: IDProps) {
+//     return (
+//         <CheckboxItem selected={checked} onClick={onClick}>
+//             <div className={`check  ${checked ? 'checked' : ''}`}  />
+//             <div>{text}</div>
+//         </div>);
+//         // <div onClick={onClick}>
+//         //     <div className={`check  ${checked ? 'checked' : ''}`}  />
+//         //     <div>{text}</div>
+//         // </div>);
+// }
 
 const DECISIONS = [
     'Laat nabestaande bepalen',
@@ -33,7 +38,10 @@ export default class Category extends React.PureComponent<IProps> {
     public render() {
         return (
             <div className="instance">
-                <div className="iName"><img src={`data:image/png;base64,${this.props.instance.icon}`} /> {this.props.instance.name}</div>
+                <div className="iName">
+                    <img src={`data:image/png;base64,${this.props.instance.icon}`} />
+                    {this.props.instance.name}
+                </div>
                 <div className="iDate">{moment(this.props.instance.date).format('DD MMM YYYY')}</div>
                 <div className="iData">
                     {this.props.instance.data.map((dat, key) =>
@@ -41,12 +49,18 @@ export default class Category extends React.PureComponent<IProps> {
                     )}
                 </div>
                 <div className="decisions">
-                    {DECISIONS.map((decision , key) =>
-                    (<Decision
+                    {DECISIONS.map((decision, key) =>
+                        (<CheckboxItem
+                            label={decision}
+                            selected={this.props.instance.decision === key}
+                            key={key}
+                            type="round"
+                        />))}
+                    {/* (<Decision
                         text={decision}
                         checked={this.props.instance.decision === key}
                         key={key}
-                    /> ))}
+                    /> ))} */}
                 </div>
             </div>
         );
