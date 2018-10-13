@@ -13,13 +13,15 @@ import { DataProduct } from "./models/DataProduct";
 import { XAuth } from "./middleware/AuthMiddleware";
 
 const VIDEOLAND_ID = "1217b527-7a51-4bc5-84eb-465ba5fa5ea8";
+const BRP_ID = "05a56c7c-1207-49e3-adb0-b096ca6425d0";
+const PHONE_ID = "a2cafcb1-01b2-4409-af75-a3a2050b14fa";
 
 const BRP: DataProduct = {
     data: {
         naam: "Marco",
         achternaam: "van Dijk",
     },
-    id: uuid.v4(),
+    id: BRP_ID,
     name: "Voor- achternaam",
 };
 
@@ -27,7 +29,7 @@ const PHONE: DataProduct = {
     data: [
         "0612345678",
     ],
-    id: uuid.v4(),
+    id: PHONE_ID,
     name: "Telefoonnummer",
 };
 

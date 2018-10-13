@@ -105,7 +105,13 @@ export default class PermissionRouter {
         const data: RevokeData = req.body;
 
         const user = res.locals.user as User;
+        const consumer = user.data_consumers[data.consumer];
+
         delete user.data_consumers[data.consumer];
+
+        if (consumer) {
+            this.tokens.delete(consumer.token);
+        }
 
         res.status(201).send("OK");
     }
