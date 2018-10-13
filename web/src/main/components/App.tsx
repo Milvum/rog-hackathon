@@ -11,8 +11,8 @@ export class App extends React.Component {
       <main>
         <Switch>
           <Route exact path="/" component={HomeContainer} />
-          <Route path="/survey/:code" component={SurveyContainer} />
           <Route path="/videoland" component={VideolandContainer} />
+          <Route path="/survey/:code" component={SurveyContainer} />
           <Route path="/submission/:code" component={SubmissionContainer} />
         </Switch>
       </main>

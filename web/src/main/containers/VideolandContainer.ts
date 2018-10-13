@@ -17,13 +17,14 @@ const mapStateToPros: MapStateToProps<VideolandProps, OwnProps, AppState> = (sta
         users: state.users.users,
         survey: state.survey,
         code: ownProps.match.params.code,
+        serviceName: 'Videoland', // TODO: Should not be hardcoded.
     };
 };
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, OwnProps> = (dispatch: DispatchType, ownProps) => {
     return {
-        onCloseSurvey: () => dispatch(closeSurvey()),
-        onConnectSurvey: (code: string) => dispatch(connectSurvey(code)),
+        // onCloseSurvey: () => dispatch(closeSurvey()),
+        // onConnectSurvey: (code: string) => dispatch(connectSurvey(code)),
     };
 };
 
