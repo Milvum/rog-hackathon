@@ -5,6 +5,7 @@ export default interface Instance {
     data: string[];
     decision: Decision;
     deleted?: boolean;
+    id: string;
 }
 
 export enum Decision {

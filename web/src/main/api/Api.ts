@@ -5,23 +5,23 @@ import {User, ConsumerEntry} from '../../../../server/src/models/User';
 export default interface IApi {
     GetData(): Promise<Array<{name: string, instances: Instance[]}>>;
     AllSurveys(): Promise<ISurvey[]>;
+    Revoke(id: string): void;
 
     GetSurvey(code: string): Promise<ISurvey | undefined>;
     CreateSurvey(topic: string): Promise<ISurvey | undefined>;
 }
 
 function mapUser(user: User): Array<{name: string, instances: Instance[]}> {
-    user.data;
-
     const instances: Array<Instance & {cat: string}> = Object.keys(user.data_consumers)
-        .map((key) => user.data_consumers[key])
-        .map((entry) => ({
+        .map((key) => ({entry: user.data_consumers[key], key}))
+        .map(({entry, key}) => ({
             cat: entry.category,
             name: entry.consumer.name,
             data: Object.keys(entry.options).map((k) => user.data[k].name),
             date: entry.date,
             icon: entry.consumer.logo,
             decision: 1,
+            id: key,
         }));
 
     const init: { [key: string]: Instance[] } = {};
@@ -43,6 +43,16 @@ function mapUser(user: User): Array<{name: string, instances: Instance[]}> {
 }
 
 export class Api implements IApi {
+    public Revoke(id: string): void {
+        fetch('http://localhost:3000/permission/revoke?', {
+            headers: {
+                'content-type': 'application/json',
+                'x-auth': '51247c2c-21db-409f-b083-c981f76fdc87' },
+            method: 'POST',
+            body: `{"consumer": "${id}"}`,
+        });
+    }
+
     public async GetData(): Promise<Array<{name: string, instances: Instance[]}>> {
         return fetch('http://localhost:3000/test', {
             headers: {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as moment from 'moment';
 import Instance from '../models/Instance';
 import Popup from './Popup';
+import {Api} from '../api/Api';
 
 interface IProps {
     instance: Instance;
@@ -34,7 +35,9 @@ export default class Category extends React.PureComponent<IProps, IState> {
         this.setState({ show: !this.state.show });
     }
 
-    private onRemove() {
+    private onRemove(id: string) {
+        new Api().Revoke(id);
+
         if (!this.state.removed) {
             // TODO:  SHOW POPUP
             this.togglePopup();
@@ -49,7 +52,7 @@ export default class Category extends React.PureComponent<IProps, IState> {
                     <img src={`data:image/png;base64,${this.props.instance.icon}`} />
                     {this.props.instance.name}
                 </div>
-                <Removal removed={this.state.removed} onClick={() => this.onRemove()} />
+                <Removal removed={this.state.removed} onClick={() => this.onRemove(this.props.instance.id)} />
                 {
                     this.state.show &&
                     <Popup type="delete" service={this.props.instance.name} onClose={() => this.togglePopup()} />
