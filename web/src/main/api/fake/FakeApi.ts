@@ -1,7 +1,12 @@
 import IApi from '../Api';
 import ISurvey from '../../models/Survey';
+import Instance from '../../models/Instance';
 
 export default class FakeApi implements IApi {
+
+    public GetData(): Promise<Array<{ name: string; instances: Instance[]; }>> {
+        throw new Error('Method not implemented.');
+    }
     public async CreateSurvey(topic: string): Promise<ISurvey | undefined> {
         return {
             closed: false,
