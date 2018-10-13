@@ -5,7 +5,7 @@ import ConnectionStatus from './ConnectionStatus';
 import SubmissionList from './SubmissionList';
 import CheckboxItem from './CheckboxItem';
 import Popup from './Popup';
-import {Api} from '../api/Api';
+import { Api } from '../api/Api';
 
 export interface IProps {
     users: string[];
@@ -18,6 +18,7 @@ interface IState {
     username: string;
     password: string;
     loginRog: boolean;
+    showPopup: boolean;
 }
 
 export interface IDispatchProps {
@@ -32,7 +33,7 @@ export type Props = IProps & IDispatchProps;
 export default class Videoland extends React.Component<Props, IState> {
     public constructor(props: Props) {
         super(props);
-        this.state = { username: '', password: '', loginRog: false };
+        this.state = { username: '', password: '', loginRog: false, showPopup: false };
 
     }
 
@@ -47,16 +48,28 @@ export default class Videoland extends React.Component<Props, IState> {
         }
     }
 
+    private togglePopup() {
+        this.setState({ showPopup: !this.state.showPopup });
+        new Api().Acquire(
+            '1217b527-7a51-4bc5-84eb-465ba5fa5ea8',
+            [
+                '05a56c7c-1207-49e3-adb0-b096ca6425d0',
+                'a2cafcb1-01b2-4409-af75-a3a2050b14fa',
+            ]);
+    }
+
     public renderPopup() {
         const message = 'Videoland wil toegang tot je BRG2 account.';
         const question = `Welke gegevens wil je delen met ${this.props.serviceName}?`;
+        const title = 'Log in met BRG2';
+        const successMessage = `Je hebt de geselecteerde gegevens gedeeld met ${this.props.serviceName}.`;
 
         return (
             <div className="container videoland-container">
                 <div className="videoland-popup">
                     <div className="popup-header-content">
                         <img width="16" height="16" src="/assets/logo.svg" />
-                        <p>Log in met BRG2</p>
+                        <p>{title}</p>
                     </div>
                     <div className="line small" />
 
@@ -84,18 +97,16 @@ export default class Videoland extends React.Component<Props, IState> {
                         </button>
                         <button
                             className="confirm-button btn"
-                            // tslint:disable-next-line:max-line-length
-                            onClick={() => new Api().Acquire(
-                                '1217b527-7a51-4bc5-84eb-465ba5fa5ea8',
-                                [
-                                    '05a56c7c-1207-49e3-adb0-b096ca6425d0',
-                                    'a2cafcb1-01b2-4409-af75-a3a2050b14fa',
-                                ])}
+                            onClick={() => this.togglePopup()}
                         >
                             Toestaan
                         </button>
                     </div>
                 </div>
+                {
+                    this.state.showPopup &&
+                    <Popup title={title} message={successMessage} onClose={() => this.togglePopup()} />
+                }
             </div>
         );
     }
@@ -147,7 +158,7 @@ export default class Videoland extends React.Component<Props, IState> {
                             </div>
                             <button
                                 className="login-button btn"
-                                onClick={() => { alert('Works'); }}
+                                onClick={() => { alert('Je hebt de geselecteerde gegevens gedeeld met Videoland.'); }}
                             >
                                 Log in
                             </button>

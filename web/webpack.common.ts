@@ -43,10 +43,11 @@ export default {
     }),
     new CleanWebpackPlugin(['build']),
     new HTMLWebpackPlugin({
-      title: 'Survey',
+      title: 'BRG2',
       description: '',
       template: 'index.html',
       inject: false,
+      favicon: './assets/favicon.png',
     }),
   ],
 };
