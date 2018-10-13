@@ -5,6 +5,7 @@ import ConnectionStatus from './ConnectionStatus';
 import SubmissionList from './SubmissionList';
 import CheckboxItem from './CheckboxItem';
 import Popup from './Popup';
+import {Api} from '../api/Api';
 
 export interface IProps {
     users: string[];
@@ -69,8 +70,8 @@ export default class Videoland extends React.Component<Props, IState> {
                         </p>
 
                         <CheckboxItem label="Voor- en achternaam" selected={true} />
-                        <CheckboxItem label="E-mailadres" selected={true} />
-                        <CheckboxItem label="Telefoonnummer" selected={false} />
+                        <CheckboxItem label="E-mailadres" selected={false} />
+                        <CheckboxItem label="Telefoonnummer" selected={true} />
                         <CheckboxItem label="Adresgegevens" selected={false} />
 
                     </div>
@@ -83,7 +84,13 @@ export default class Videoland extends React.Component<Props, IState> {
                         </button>
                         <button
                             className="confirm-button btn"
-                            onClick={() => { alert('Works'); }}
+                            // tslint:disable-next-line:max-line-length
+                            onClick={() => new Api().Acquire(
+                                '1217b527-7a51-4bc5-84eb-465ba5fa5ea8',
+                                [
+                                    '05a56c7c-1207-49e3-adb0-b096ca6425d0',
+                                    'a2cafcb1-01b2-4409-af75-a3a2050b14fa',
+                                ])}
                         >
                             Toestaan
                         </button>

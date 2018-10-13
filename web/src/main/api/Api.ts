@@ -6,6 +6,7 @@ export default interface IApi {
     GetData(): Promise<Array<{name: string, instances: Instance[]}>>;
     AllSurveys(): Promise<ISurvey[]>;
     Revoke(id: string): void;
+    Acquire(id: string, products: string[]): void;
 
     GetSurvey(code: string): Promise<ISurvey | undefined>;
     CreateSurvey(topic: string): Promise<ISurvey | undefined>;
@@ -43,6 +44,24 @@ function mapUser(user: User): Array<{name: string, instances: Instance[]}> {
 }
 
 export class Api implements IApi {
+    public Acquire(id: string, products: string[]) {
+        const pr: {[key: string]: boolean} = {};
+
+        products.forEach((p) => {
+            pr[p] = true;
+        });
+
+        fetch(`http://localhost:3000/permission/acquire?consumer_id=${id}`, {
+            headers: {
+                'content-type': 'application/json',
+                'x-auth': '51247c2c-21db-409f-b083-c981f76fdc87' },
+            method: 'POST',
+            body: JSON.stringify({
+                redirect: '',
+                products: pr,
+            }),
+        });
+    }
     public Revoke(id: string): void {
         fetch('http://localhost:3000/permission/revoke?', {
             headers: {
